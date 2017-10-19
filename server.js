@@ -25,32 +25,11 @@ app.use( (req,res,next)=>{
     console.log(log);
     fs.appendFile('server.log', log + '\n',
         (err)=>{
-            console.log('Unable to append to server.log');
+            if(err!=null) console.log('Unable to append to server.log');
         }
     );
     next();
 } );
-
-app.use( (req,res,next)=>{
-    var now = new Date().toString();
-    var log = now +' : '+ req.method +' '+ req.url;
-    console.log(log);
-    fs.appendFile('server.log', log + '\n',
-        (err)=>{
-            console.log('Unable to append to server.log');
-        }
-    );
-    next();
-} );
-
-app.use( (req,res,next)=>{
-    res.render('maintenance.hbs', {       
-        welcomeMessage: 'Welcome stranger'
-        }
-    )
-} );
-
-
 
 //__dirname stores the addres of your server 
 app.use( express.static(__dirname + '/public' )  );
@@ -71,6 +50,15 @@ app.get('/about',
 (req,res) => {
     res.render('about.hbs',{
         pageTitle : 'About page',
+        currentYear: new Date().getFullYear()
+    });
+}
+);
+
+app.get('/projects',
+(req,res) => {
+    res.render('projects.hbs',{
+        pageTitle : 'Projects page',
         currentYear: new Date().getFullYear()
     });
 }
