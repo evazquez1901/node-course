@@ -13,6 +13,7 @@ hbs.registerHelper('getCurrentYear',()=>{
     return new Date().getFullYear();
 });
 hbs.registerHelper('screamIt', (text)=>{
+    const b = 'Hello';
     return text.toUpperCase();
 });
 
