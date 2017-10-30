@@ -9,6 +9,7 @@ var app = express();
 hbs.registerPartials(__dirname + '/views/partials');
 
 hbs.registerHelper('getCurrentYear',()=>{
+    const a = 'Hello';
     return new Date().getFullYear();
 });
 hbs.registerHelper('screamIt', (text)=>{
@@ -19,7 +20,7 @@ hbs.registerHelper('screamIt', (text)=>{
 app.set('view_engine','hbs');
 
 //middle ware 
-app.use( (req,res,next)=>{
+app.use( (req,res,next)=>{    
     var now = new Date().toString();
     var log = now +' : '+ req.method +' '+ req.url;
     console.log(log);
